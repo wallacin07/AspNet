@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "L3LCOWQHH/Rkkjy4zbJECVRsW6s+Y9vIjzPSuLEnbbg=",
+  "Source": "AspNet",
+  "BasePath": "_content/AspNet",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
