@@ -1,19 +1,18 @@
-
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Server.Configuration;
 using Server.Models;
 using Server.Services.Token;
 using Server.Services.User;
 
 namespace Server.Controllers;
 
-[Route("/user")]
+[Route("user")]
 [ApiController]
 
 public class UserController(IUserService service,
  ConfigurationManager config,
- JWTService jwtService
+ ITokenService jwtService
  ) : ControllerBase
 {
 
@@ -26,24 +25,28 @@ public class UserController(IUserService service,
     }
 
     [Authorize]
-    [HttpGet("/invitation")]
+    [HttpGet("invitation")]
     public IActionResult GetInvitationUrl()
     {
-         var userId =  Guid.Empty;
-         var localHost = config.GetClientUrl;
+         var userId = User.GetUserId();
+         if (!userId.HasValue)
+            return Unauthorized();
+        
+
+         var localHost = config.GetClientUrl();
         //  var localHost = config["FrontEndURL"]; JEITO CERTO
          return Ok($"{localHost}/invitation/{userId}");
     }
 
 
-    [HttpPost("/invitation/{invite}")]
+    [HttpPost("invitation/{invite}")]
     public async Task<IActionResult> CreateUserWithInvite([FromBody] AccountData accountData,[FromRoute]Guid invite)
     {
         await service.CreateUser(accountData, invite);
         return  Ok("User Created succesfully");
     }
 
-    [HttpPost("/auth")]
+    [HttpPost("auth")]
     public async Task<IActionResult> Login([FromBody] LoginData loginData)
     {
         var user = await service.Authenticate(loginData);

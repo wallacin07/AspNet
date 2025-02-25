@@ -163,3 +163,5 @@ C:\Users\disrct\Documents\AspNet\obj\Debug\net9.0\refint\AspNet.dll
 C:\Users\disrct\Documents\AspNet\obj\Debug\net9.0\AspNet.pdb
 C:\Users\disrct\Documents\AspNet\obj\Debug\net9.0\AspNet.genruntimeconfig.cache
 C:\Users\disrct\Documents\AspNet\obj\Debug\net9.0\ref\AspNet.dll
+C:\Users\disrct\Documents\AspNet\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\disrct\Documents\AspNet\obj\Debug\net9.0\AspNet.sourcelink.json
