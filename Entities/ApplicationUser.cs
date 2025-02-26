@@ -7,8 +7,8 @@ public class ApplicationUser
     public required string Name { get; set;}
     public required string Email { get; set;}
     public required string PasswordHash { get; set;}
-
     public Guid? InvitedById { get; set;}
     public ApplicationUser? InvitedBy { get; set;}
     public ICollection<ApplicationUser> InvitedUsers { get; set;} = [];
+    public ICollection<ApplicationOrder>? Orders { get; set;}
 }
