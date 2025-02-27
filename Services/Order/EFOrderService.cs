@@ -7,6 +7,28 @@ namespace Server.Services.Order;
 
 public class EFOrderService(ParaLanchesDbContext ctx) : IOrderService
 {
+    public async Task<bool> CompleteOrder(string orderId)
+    {
+        var order = await ctx.Orders
+        .Where(o => o.CustomerId == Guid.Parse(orderId))
+        .FirstOrDefaultAsync();
+
+        if (order == null)
+           return false;
+
+        order.OrderCompleted = true;
+
+        await ctx.SaveChangesAsync();
+
+        return true;
+
+    }
+
+    public async Task<ApplicationOrder[]> GetAllOrders()
+    {
+        var orders = await ctx.Orders.ToListAsync();
+        return orders.ToArray();
+    }
     public async Task<ApplicationOrder> CreateOrder(OrderData data)
     {
         var order = new ApplicationOrder
@@ -35,6 +57,7 @@ public class EFOrderService(ParaLanchesDbContext ctx) : IOrderService
                 return false;
 
             ctx.Orders.Remove(order);
+            await ctx.SaveChangesAsync();
             return true;
 
         }
@@ -47,6 +70,7 @@ public class EFOrderService(ParaLanchesDbContext ctx) : IOrderService
 
 
     }
+
 
     public async Task<ApplicationOrder[]> GetIncompletedOrders()
     {

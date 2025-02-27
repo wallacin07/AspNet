@@ -9,5 +9,7 @@ public interface IOrderService
     Task<ApplicationOrder?> GetOrder(string orderId);
     Task<ApplicationOrder> CreateOrder(OrderData data);
     Task<bool> DeleteOrder(string orderId); 
+    Task<bool> CompleteOrder(string orderId);
+    Task<ApplicationOrder[]> GetAllOrders();
 
 }

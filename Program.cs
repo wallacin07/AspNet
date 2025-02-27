@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Server;
 using Server.Configuration;
 using Server.Entities;
+using Server.Services.Drink;
+using Server.Services.Meal;
+using Server.Services.Order;
 using Server.Services.Password;
 using Server.Services.Token;
 using Server.Services.User;
@@ -22,7 +25,10 @@ builder.Services
     .AddSingleton(builder.Configuration)
     .AddSingleton<IPasswordService, PBKDF2PasswordService>()
     .AddSingleton<ITokenService, JWTService>()
-    .AddScoped<IUserService, EFUserService>();
+    .AddScoped<IUserService, EFUserService>()
+    .AddScoped<IOrderService,EFOrderService>()
+    .AddScoped<IMealService,EFMealService>()
+    .AddScoped<IDrinkService,EFDrinkService>();
 
 // tipos de tempo de vida
 // builder.Services
