@@ -31,12 +31,20 @@ public class EFOrderService(ParaLanchesDbContext ctx) : IOrderService
     }
     public async Task<ApplicationOrder> CreateOrder(OrderData data)
     {
+
+        var drinks = await ctx.Drinks.Where(d => data.drinks.Contains(d.Id.ToString())).ToListAsync();
+        var meals = await ctx.Meals.Where(m => data.meals.Contains(m.Id.ToString())).ToListAsync();
+        var customer = await ctx.Users.FindAsync(Guid.Parse(data.CustomerId));
+
+        if (customer == null)
+            return null;
+        
         var order = new ApplicationOrder
         {
-            Customer = data.customer,
-            CustomerId = data.customer.Id,
-            Meals = data.meals,
-            Drinks = data.drinks,
+            Customer = customer,
+            CustomerId = Guid.Parse(data.CustomerId),
+            Meals = meals,
+            Drinks = drinks,
             TotalPrice = data.totalPrice,
         };
 

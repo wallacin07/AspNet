@@ -12,7 +12,16 @@ using Server.Services.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MainPolicy", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:4200")
+            .WithHeaders("*")
+            .WithMethods("*");
+    });
+});
 
 builder.Services
     .AddJWTAuthentication(builder.Configuration)

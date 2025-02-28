@@ -1,0 +1,58 @@
+## Ignore arquivos e pastas gerados pelo Visual Studio, .NET e EF Core
+
+# Arquivos temporários e de build do Visual Studio
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Pastas de build e output
+[Bb]in/
+./[Oo]bj/
+[Dd]ebug*/
+[Rr]elease*/
+
+# Cache do Visual Studio e arquivos temporários
+.vs/
+*.cache
+*.ilk
+*.log
+*.pdb
+*.opendb
+*.sdf
+*.opensdf
+
+# Arquivos de configuração do VS Code
+.vscode/
+
+# Arquivos gerados pelo ASP.NET Core
+wwwroot/lib/
+
+# Arquivos temporários do Entity Framework (Migrations são versionadas, mas alguns arquivos gerados podem ser ignorados)
+# Caso você tenha migrations geradas que queira versionar, remova essa linha
+Migrations/
+
+# Arquivos de lock do .NET Core (antigos)
+project.lock.json
+project.fragment.lock.json
+
+# Diretórios de artefatos
+artifacts/
+
+# Outros arquivos e pastas que podem ser ignorados
+
+# NPM e Bower (se utilizar)
+node_modules/
+bower_components/
+
+# Arquivos do sistema Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Configurações do Rider/JetBrains
+.idea/
+
+# Outros arquivos de log ou temporários
+*.vspscc
+*.vssscc
